@@ -4,6 +4,11 @@
     <div style="display: grid; place-items: center;">
         <h1><strong>{{$post->title}} <br> By {{ $username[0] }} on {{ $post->created_at }} </strong></h1>
         <p>{{$post->body}}</p>
+        <p>
+            @if($post->post_url)
+                <img src="{{ asset('storage/' . $post->post_url) }}" alt="{{ $post->title }}" width="100">
+            @endif
+        </p>
     </div>
     </div>
 </x-app-layout>

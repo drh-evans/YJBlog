@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->get();
         return view('posts.index', ['posts'=>$posts]);
     }
 
@@ -31,9 +31,25 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title'=>'required|max:250',
-            'body'=>'required|max:500',
+            'title'=>'required|string|max:250',
+            'body'=>'required|string|max:500',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $p = new Post;
+        $p->user_id=auth()->id();
+        $p->title = $validatedData['title'];
+        $p->body = $validatedData['body'];
+        $p->like_count=0;
+        
+        if ($request->hasFile('image')) {
+            $imageUrl = $request->file('image')->store('posts', 'public');;
+            $p->post_url = $imageUrl;
+        }
+        $p->save();
+        session()->flash('message', 'Post created successfully!');
+
+        return redirect()->route('posts.index');
     }
 
     /**
