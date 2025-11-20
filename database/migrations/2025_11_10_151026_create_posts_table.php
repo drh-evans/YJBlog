@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->string('body');
+            $table->string('post_url')->nullable();
             $table->bigInteger('like_count')->unsigned();
             $table->timestamps();
             

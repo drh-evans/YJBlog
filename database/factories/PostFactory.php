@@ -17,7 +17,7 @@ class PostFactory extends Factory
     {
         return [
             "user_id"=>$this->faker->numberBetween(1,11),
-            "title"=>$this->faker->text($maxNbChars = 30),
+            "title"=>$this->faker->realText($maxNbChars = 30),
             "body"=>$this->faker->realText(),
             "like_count"=>$this->faker->randomNumber(5, false),
         ];
