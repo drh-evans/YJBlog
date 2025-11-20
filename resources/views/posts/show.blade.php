@@ -6,7 +6,7 @@
         <p>{{$post->body}}</p>
         <p>
             @if($post->post_url)
-                <img src="{{ asset('storage/' . $post->post_url) }}" alt="{{ $post->title }}" width="100">
+                <img src="{{ asset('storage/' . $post->post_url) }}" alt="{{ $post->title }}" width="400">
             @endif
         </p>
     </div>
