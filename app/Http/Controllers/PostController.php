@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(15);
         return view('posts.index', ['posts'=>$posts]);
     }
 
@@ -35,7 +35,7 @@ class PostController extends Controller
             'body'=>'required|string|max:500',
             'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
+        
         $p = new Post;
         $p->user_id=auth()->id();
         $p->title = $validatedData['title'];
