@@ -9,6 +9,8 @@
                     <img src="{{ asset('storage/' . $post->post_url) }}" alt="{{ $post->title }}" width="400">
                 @endif
             </p>
+
+            <a href="{{ route('post.edit', $post->id) }}"> Edit Post</a>
         </div>
     </div>
 </x-app-layout>

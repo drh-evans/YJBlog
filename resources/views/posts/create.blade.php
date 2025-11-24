@@ -10,7 +10,7 @@
         </div>
     @endif
 
-    <div>
+    <div class="content-center">
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
             <p>Title: <input type="text" name="title" value="{{ old('title') }}"></p>

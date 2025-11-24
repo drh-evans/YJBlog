@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use Storage;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
     {
         // return the latest posts with 15 posts per page.
         return view('posts.index', [
-            'posts'=>Post::latest()->paginate(15)
+            'posts'=>Post::latest()->paginate(15),
         ]);
     }
 
@@ -72,7 +73,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit', ['post'=>$post]);
     }
 
     /**
@@ -80,7 +82,29 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $p = Post::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'title'=>'nullable|string|max:250',
+            'body'=>'required|string|max:500',
+            'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $p->title = $validatedData['title'] ?? $p->title;
+        $p->body = $validatedData['body'];
+
+        // check if an image has been uploaded, delete any image and 
+        if ($request->hasFile('image')) {
+            if ($p->post_url) {
+                Storage::delete('public/' . $p->post_url);
+            }
+            $imageUrl = $request->file('image')->store('posts', 'public');;
+            $p->post_url = $imageUrl;
+        }
+        $p->save();
+        session()->flash('message', 'Post updated successfully!');
+            
+        return redirect()->route('posts.index');
     }
 
     /**
