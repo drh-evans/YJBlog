@@ -13,8 +13,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(15);
-        return view('posts.index', ['posts'=>$posts]);
+        // return the latest posts with 15 posts per page.
+        return view('posts.index', [
+            'posts'=>Post::latest()->paginate(15)
+        ]);
     }
 
     /**
@@ -30,6 +32,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // validate that data meets the correct standards.
         $validatedData = $request->validate([
             'title'=>'required|string|max:250',
             'body'=>'required|string|max:500',
@@ -42,6 +45,7 @@ class PostController extends Controller
         $p->body = $validatedData['body'];
         $p->like_count=0;
         
+        // check if an image has been uploaded.
         if ($request->hasFile('image')) {
             $imageUrl = $request->file('image')->store('posts', 'public');;
             $p->post_url = $imageUrl;
