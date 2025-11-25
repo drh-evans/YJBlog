@@ -52,9 +52,7 @@ class PostController extends Controller
             $p->post_url = $imageUrl;
         }
         $p->save();
-        session()->flash('message', 'Post created successfully!');
-
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('success', 'Post created');
     }
 
     /**
@@ -102,9 +100,8 @@ class PostController extends Controller
             $p->post_url = $imageUrl;
         }
         $p->save();
-        session()->flash('message', 'Post updated successfully!');
-            
-        return redirect()->route('posts.index');
+
+        return redirect()->route('posts.index')->with('success', 'Post updated');
     }
 
     /**
@@ -112,6 +109,14 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        if($post->post_url) {
+            Storage::delete('public/' . $post->post_url);
+        }
+
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('success', 'Post deleted.');
     }
 }

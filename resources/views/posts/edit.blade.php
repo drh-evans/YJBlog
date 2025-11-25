@@ -11,7 +11,7 @@
 
     <div class="content-center">
         <form method='POST' action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
-            @method('PUT')
+            @method('PATCH')
             @csrf
             <p>Title: <input type="text" name="title" value="{{ old('title') }}"></p>
             <p>Body: <input type="text" name="body" value="{{ old('body') }}"></p>

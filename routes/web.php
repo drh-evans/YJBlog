@@ -30,7 +30,7 @@ Route::post('/posts', [PostController::class, 'store'])
 Route::get('/posts/{id}', [PostController::class, 'show'])
 ->middleware(['auth', 'verified'])->name('post.show');
 
-Route::put('/posts/{id}', [PostController::class, 'update'])
+Route::patch('/posts/{id}', [PostController::class, 'update'])
 ->middleware(['auth', 'verified'])->name('posts.update');
 
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
