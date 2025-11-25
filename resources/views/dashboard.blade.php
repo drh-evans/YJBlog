@@ -1,15 +1,9 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-    
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8" >
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Welcome to YJBlog! Your home for football content.") }}
-                </div>
-        </div>
-    </div>
-</x-app-layout>
+@extends('layouts.yjblayout')
+
+@section('title', 'Dashboard')
+
+@section('content')
+<p class="text-red-500">YJBlog will soon have many different pages! For now I've laid it out like this until I make a navbar!</p>
+<p>
+    <a href="{{ route('posts.index') }}" class="text-blue-500">Posts</a></p>
+@endsection

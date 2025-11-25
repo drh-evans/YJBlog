@@ -1,4 +1,8 @@
-<x-app-layout>
+@extends('layouts.yjblayout')
+
+@section('title', 'Edit your post!')
+
+@section('content')
     @if ($errors->any())
         <div>
             <ul style="color: red">
@@ -9,16 +13,18 @@
         </div>
     @endif
 
-    <div class="content-center">
+    <div class="mt-4 flex flex-col items-center">
         <form method='POST' action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
-            <p>Title: <input type="text" name="title" value="{{ old('title') }}"></p>
-            <p>Body: <input type="text" name="body" value="{{ old('body') }}"></p>
-            <p>Image: <input type="file" name="image"></p>
+            <input type="text" name="title" value="{{ old('title', $post->title) }}" class=" text-black bg-slate-300 rounded-lg w-full mb-2">
+            <textarea name="body" class="mt-2 text-black bg-slate-300 rounded-lg w-full mb-2">{{ old('body', $post->body) }}</textarea>
+            <input type="file" name="image" class="mt-2">
 
-            <input type="submit" value="Save">
-            <a href="{{ route('posts.index') }}"> Cancel </a>
+            <div class="mt-2 flex justify-center gap-4">
+                <input type="submit" value="Save" class="rounded-lg bg-green-500 hover:bg-green-400 px-4 py-2">
+                <a href="{{ route('posts.index') }}" class="rounded-lg bg-red-500 hover:bg-red-400 px-4 py-2"> Cancel </a>
+            </div>
         </form>
     </div>
-</x-app-layout>
+@endsection

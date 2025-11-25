@@ -1,8 +1,15 @@
-<x-app-layout>
-    <div style="color: white;">
+@extends('layouts.yjblayout')
+
+@section('title', '')
+
+@section('content')
+    <div>
         <a href="{{ route('posts.index') }}">Back</a>
         <div style="display: grid; place-items: center;">
-            <h1><strong>{{ $post->title }} <br> By {{ $username[0] }} on {{ $post->created_at }} </strong></h1>
+            <h1>{{ $post->title }} <br> Created by {{ $username[0] }} on {{ $post->created_at->format('d/m/Y') }} at 
+                {{ $post->created_at->format('g:i A T') }}<br>
+                Last updated {{ $post->updated_at->diffForHumans() }}
+            </h1>
             <p>{{ $post->body }}</p>
             <p>
                 @if ($post->post_url)
@@ -13,4 +20,4 @@
             <a href="{{ route('post.edit', $post->id) }}"> Edit Post</a>
         </div>
     </div>
-</x-app-layout>
+@endsection

@@ -1,20 +1,22 @@
-<x-app-layout>
+@extends('layouts.yjblayout')
 
+@section('title', 'Posts')
+
+@section('content')
     <body>
-        <div style="color:white">
-            <h1 style="font-size:50px">Posts</h1>
+        <div>
             <a href="{{ route('posts.create') }}">New Post</a>
 
             @foreach ($posts as $post)
-                <div>
-                    <h2 style="font-size:20px; color:red"><strong><a href="{{ route('post.show', ['id' => $post->id]) }}">
-                                {{ $post->title }}</strong></a></h2>
-                    <strong>
+                <div class="mt-4 flex flex-col items-center bg-blue-900 rounded-lg p-2 w-64 mx-auto">
+                    <h2 class="text-red-500 hover:underline"><a href="{{ route('post.show', ['id' => $post->id]) }}">
+                                {{ $post->title }}</a></h2>
+                    <div>
                         <button>Comment</button>
                         <button>Like</button>
-                    </strong>
+                    </div>
                 </div>
             @endforeach
         </div>
     </body>
-</x-app-layout>
+@endsection
