@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         // validate that data meets the correct standards.
         $validatedData = $request->validate([
-            'title'=>'required|string|max:250',
+            'title'=>'required|string|max:70',
             'body'=>'required|string|max:500',
             'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -60,10 +60,11 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::findOrFail($id);
-        $authorId = $post->user_id;
-        $username = DB::table('users')->where('id', $authorId)->pluck('name');
-        return view('posts.show', ['post'=>$post, 'username'=>$username]);
+        $post = Post::with('user')->findOrFail($id);
+
+        $comments = $post->comments()->with('user')->latest()->paginate(5);
+
+        return view('posts.show', ['post'=>$post, 'comments'=>$comments]);
     }
 
     /**
