@@ -61,7 +61,6 @@ class PostController extends Controller
     public function show(string $id)
     {
         $post = Post::with('user')->findOrFail($id);
-
         $comments = $post->comments()->with('user')->latest()->paginate(5);
 
         return view('posts.show', ['post'=>$post, 'comments'=>$comments]);
