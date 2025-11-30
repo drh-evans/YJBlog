@@ -41,7 +41,7 @@ class AccountController extends Controller
         $profile = Profile::with(['club', 'user'])->findOrFail($id);
         $posts = Post::where('user_id', $profile->user_id)->latest()->paginate(10);
         $comments = Comment::where('user_id', $profile->user_id)->latest()->paginate(10);
-        return view('accounts.show', ['account'=>$profile, 'posts'=>$posts]);
+        return view('accounts.show', ['account'=>$profile, 'posts'=>$posts, 'comments'=>$comments]);
     }
 
     /**

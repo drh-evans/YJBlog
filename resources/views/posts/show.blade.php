@@ -14,14 +14,17 @@
 
             <div class="mt-4 text-center">
                 <h1 class="font-bold">{{ $post->title }}</h1>
-                <p class="text-sm italic">Created by {{ $post->user->name }} on {{ $post->created_at->format('d/m/Y') }} at
+                <p class="text-sm italic">Created by <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
+                        class="hover:underline">{{ $post->user->name }}</a> on
+                    {{ $post->created_at->format('d/m/Y') }} at
                     {{ $post->created_at->format('g:i A T') }}<br> Last updated {{ $post->updated_at->diffForHumans() }}</p>
                 <p>{{ $post->body }}</p>
             </div>
 
             @if ($post->user_id === auth()->id())
                 <div class="mt-2 flex justify-center gap-4">
-                    <a href="{{ route('post.edit', $post->id) }}" class="rounded-lg bg-gray-500 hover:bg-gray-400 px-3 py-1">
+                    <a href="{{ route('post.edit', $post->id) }}"
+                        class="rounded-lg bg-gray-500 hover:bg-gray-400 px-3 py-1">
                         Edit
                         Post</a>
 
@@ -42,7 +45,9 @@
                 @foreach ($comments as $comment)
                     <div class="mt-4">
                         {{ $comment->content }}
-                        <p class="italic text-sm">Posted by {{ $comment->user->name }} on
+                        <p class="italic text-sm">Posted by <a
+                                href="{{ route('accounts.show', ['id' => $comment->user_id]) }}"
+                                class="hover:underline">{{ $comment->user->name }}</a> on
                             {{ $comment->created_at->format('d/m/Y') }} at
                             {{ $comment->created_at->format('g:i A T') }}<br>
                             Last updated {{ $comment->updated_at->diffForHumans() }}</p>
