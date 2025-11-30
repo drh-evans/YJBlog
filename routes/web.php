@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -39,4 +40,9 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])
 ->middleware(['auth', 'verified'])->name('post.destroy');
 
+Route::get('/users', [AccountController::class, 'index'])
+->middleware(['auth', 'verified'])->name('accounts.index');
+
+Route::get('/users/{id}', [AccountController::class, 'show'])
+->middleware(['auth', 'verified'])->name('accounts.show');
 require __DIR__.'/auth.php';

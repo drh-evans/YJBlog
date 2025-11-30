@@ -41,6 +41,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $user->profile()->create([
+            'display_name'=>$user->name,
+            'description'=> "I haven't made a bio yet!",
+            'favourite_club_id'=>1,
+            'role'=>'user',
+        ]);
+
         event(new Registered($user));
 
         Auth::login($user);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -19,7 +20,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('comments.create');
     }
 
     /**
@@ -27,7 +28,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate that data meets the correct standards.
+        $validatedData = $request->validate([
+            'content'=>'required|string|max:300',
+        ]);
+
+        $c = new Comment();
+        $c->user_id=auth()->id();
+        $c->save();
+        return redirect()->route('posts.index')->with('success', 'Comment added!');
     }
 
     /**
