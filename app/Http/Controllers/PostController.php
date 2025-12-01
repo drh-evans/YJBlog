@@ -16,7 +16,7 @@ class PostController extends Controller
     {
         // return the latest posts with 15 posts per page.
         return view('posts.index', [
-            'posts'=>Post::latest()->paginate(15),
+            'posts'=>Post::latest()->paginate(10),
         ]);
     }
 
