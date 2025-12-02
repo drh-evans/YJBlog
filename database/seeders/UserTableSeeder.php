@@ -18,6 +18,13 @@ class UserTableSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        User::factory()->create([
+            'name'=>'rhys05',
+            'email'=>'owner@yjblog.com',
+            'password'=>'testtest',
+            'role_id'=>3,
+        ]);
         
         User::factory(10)->has(Post::factory(15))->create();
     }

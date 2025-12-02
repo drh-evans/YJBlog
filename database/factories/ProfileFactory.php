@@ -21,7 +21,6 @@ class ProfileFactory extends Factory
             "display_name"=>$this->faker->userName(),
             "description"=>$this->faker->text($maxNbChars = 100),
             "favourite_club_id"=>$this->faker->numberBetween(1,21),
-            "role"=>$this->faker->randomElement(["User", "Admin"])
         ];
     }
 }

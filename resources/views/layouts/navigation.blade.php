@@ -19,8 +19,16 @@
                         {{ __('Posts') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts')">
+                        {{ __('My Posts') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('accounts.index')" :active="request()->routeIs('accounts')">
-                        {{ __('Accounts') }}
+                        {{ __('Stadiums') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('accounts.index')" :active="request()->routeIs('accounts')">
+                        {{ __('Users') }}
                     </x-nav-link>
                 </div>
             </div>

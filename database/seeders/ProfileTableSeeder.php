@@ -18,7 +18,6 @@ class ProfileTableSeeder extends Seeder
         $p->display_name ="Rhys";
         $p->description ="Big football fan";
         $p->favourite_club_id=1;
-        $p->role="Owner";
         $p->save();
 
         

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('display_name');
             $table->string('description');
             $table->bigInteger('favourite_club_id')->unsigned();
-            $table->string('role');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

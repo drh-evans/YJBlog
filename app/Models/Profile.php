@@ -12,7 +12,6 @@ class Profile extends Model
         'display_name',
         'description',
         'favourite_club_id',
-        'role',
     ];
 
     public function user(){
