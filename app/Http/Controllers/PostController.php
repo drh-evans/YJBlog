@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
 use Storage;
 
@@ -72,6 +73,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
+        Gate::authorize('edit-post', $post);
         return view('posts.edit', ['post'=>$post]);
     }
 
@@ -80,7 +82,9 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $p = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
+
+        Gate::authorize('edit-post', $post);
 
         $validatedData = $request->validate([
             'title'=>'nullable|string|max:250',
@@ -88,18 +92,18 @@ class PostController extends Controller
             'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $p->title = $validatedData['title'] ?? $p->title;
-        $p->body = $validatedData['body'];
+        $post->title = $validatedData['title'] ?? $post->title;
+        $post->body = $validatedData['body'];
 
         // check if an image has been uploaded, delete any image and 
         if ($request->hasFile('image')) {
-            if ($p->post_url) {
-                Storage::delete('public/' . $p->post_url);
+            if ($post->post_url) {
+                Storage::delete('public/' . $post->post_url);
             }
             $imageUrl = $request->file('image')->store('posts', 'public');;
-            $p->post_url = $imageUrl;
+            $post->post_url = $imageUrl;
         }
-        $p->save();
+        $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Post updated');
     }
@@ -110,6 +114,8 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::findOrFail($id);
+
+        Gate::authorize('delete-post', $post);
 
         if($post->post_url) {
             Storage::delete('public/' . $post->post_url);

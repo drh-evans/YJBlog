@@ -21,20 +21,22 @@
                 <p>{{ $post->body }}</p>
             </div>
 
-            @if ($post->user_id === auth()->id())
-                <div class="mt-2 flex justify-center gap-4">
-                    <a href="{{ route('post.edit', $post->id) }}"
-                        class="rounded-lg bg-gray-500 hover:bg-gray-400 px-3 py-1">
-                        Edit
-                        Post</a>
 
+            <div class="mt-2 flex justify-center gap-4">
+
+                @can('edit-post', $post)
+                    <a href="{{ route('post.edit', $post->id) }}" class="rounded-lg bg-gray-500 hover:bg-gray-400 px-3 py-1">
+                        Edit Post</a>
+                @endcan
+
+                @can('delete-post', $post)
                     <form action="{{ route('post.destroy', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="rounded-lg bg-red-500 hover:bg-red-400 px-3 py-1">Delete Post</button>
                     </form>
-                </div>
-            @endif
+                @endcan
+            </div>
 
             <div class="text-center">
                 <div class="">
