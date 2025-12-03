@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Comment;
 
 class CommentHandler extends Component
@@ -33,6 +34,12 @@ class CommentHandler extends Component
         session()->flash('message', 'Comment added!');
     }
 
+    public function delete($commentId) {
+        $comment = Comment::findOrFail($commentId);
+        Gate::authorize('delete-comment', $comment);
+        $comment->delete();
+        session()->flash('message', 'Comment deleted!');
+    }
     public function render()
     {
         return view('livewire.commenthandler', ['comments'=>Comment::where('post_id', $this->postId)->latest()->paginate(5)]);
