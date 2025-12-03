@@ -14,7 +14,7 @@
 <body>
     @include('layouts.navigation')
     <div class="min-h-screen text-black">
-        <h1 class="font-bold text-3xl">@yield('title')</h1>
+        <h1 class="ml-4 font-bold text-3xl">@yield('title')</h1>
         <div>
             @yield('content')
         </div>

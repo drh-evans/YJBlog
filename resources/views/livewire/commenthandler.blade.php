@@ -2,24 +2,25 @@
     <div class="flex flex-col items-center">
         @include('components.custom.error')
         <form wire:submit.prevent="submit">
+            @csrf
             <textarea wire:model="content" placeholder="Add a comment..."
                 class="mt-2 max-w-96 text-black bg-slate-300 rounded-lg w-full mb-2"></textarea>
-            <button type="submit" class="rounded-lg bg-[#EF8354] hover:bg-blue-400 px-4 py-2">Post Comment</button>
+            <button type="submit" class="rounded-lg bg-[#EF8354] hover:bg-[#d58867] px-4 py-2 font-semibold">Post
+                Comment</button>
         </form>
 
         @foreach ($comments as $comment)
             <div wire:key="comment-{{ $comment->id }}"
                 class="mt-4 w-[700px] border border-black rounded-md bg-[#BFC0C0]/20 shadow-md p-3">
-                <p class="text-base font-serif">{{ $comment->content }}</p>
+                <p class="text-md">{{ $comment->content }}</p>
                 <p class="italic text-sm mt-2"><a href="{{ route('accounts.show', ['id' => $comment->user_id]) }}"
-                        class="hover:underline hover:text-blue-300">&#64{{ $comment->user->name }}</a> on
-                    {{ $comment->created_at->format('d/m/Y') }} at
-                    {{ $comment->created_at->format('g:i A T') }}<br>
-                    Last updated {{ $comment->updated_at->diffForHumans() }}</p>
+                        class="hover:underline text-[#EF8354]">&#64{{ $comment->user->name }}</a>
+                    Commented {{ $comment->updated_at->diffForHumans() }} ({{ $comment->created_at->format('d/m/Y') }})
+                </p>
 
                 @can('delete-comment', $comment)
                     <button wire:click="delete({{ $comment->id }})"
-                        class="mt-2 rounded-lg bg-red-500 hover:bg-red-400 p-1">Delete</button>
+                        class="mt-2 rounded-lg bg-red-500 hover:bg-red-400 p-1 font-semibold">Delete</button>
                 @endcan
             </div>
         @endforeach
