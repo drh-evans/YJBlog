@@ -42,7 +42,6 @@
             <div class="text-center">
                 <div class="">
                     <h1 class="mt-4 font-bold"> Comments </h1>
-                    <p class="font-light italic">Some thoughts from fellow users! If any at all.</p>
                 </div>
 
                 @livewire('commenthandler', ['id' => $post->id])

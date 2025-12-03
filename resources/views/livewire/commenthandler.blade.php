@@ -3,7 +3,7 @@
         @include('components.custom.error')
         <form wire:submit.prevent="submit">
             <textarea wire:model="content" placeholder="Add a comment..." class="mt-2 text-black bg-slate-300 rounded-lg w-full mb-2"></textarea>
-            <button type="submit" class="rounded-lg bg-blue-500 hover:bg-blue-400 px-4 py-2">Post Comment</button>
+            <button type="submit" class="rounded-lg bg-[#EF8354] hover:bg-blue-400 px-4 py-2">Post Comment</button>
         </form>
     </div>
 

@@ -13,12 +13,14 @@
 
 <body>
     @include('layouts.navigation')
-    <div class="min-h-screen bg-white text-black">
+    <div class="min-h-screen text-black">
         <h1 class="font-bold text-3xl">@yield('title')</h1>
         <div>
             @yield('content')
         </div>
     </div>
+    @include('components.custom.footer')
+
 </body>
 
 </html>
