@@ -6,7 +6,6 @@
     <div>
         <a href="{{ route('accounts.index') }}">Back</a>
 
-
         <div class="text-center">
             <h1 class="font-bold">{{ $account->display_name }}'s Profile</h1>
             <p class="italic">

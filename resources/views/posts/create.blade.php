@@ -5,6 +5,9 @@
 @section('content')
 
     <div class="mt-4 flex flex-col items-center">
+
+        @include('components.custom.error')
+
         <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
             <p class="mt-2 font-bold">Your title:</p>

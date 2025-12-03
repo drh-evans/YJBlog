@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->string('title');
-            $table->string('body');
+            $table->text('title');
+            $table->text('body');
             $table->string('post_url')->nullable();
             $table->bigInteger('like_count')->unsigned();
             $table->timestamps();

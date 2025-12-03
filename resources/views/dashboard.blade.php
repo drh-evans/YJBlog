@@ -1,11 +1,7 @@
 @extends('layouts.yjblayout')
 
-@section('title', 'Dashboard')
-
 @section('content')
-    <p class="text-red-500">YJBlog will soon have many different pages! For now I've laid it out like this until I make a
-        navbar!</p>
-    <p>
-        <a href="{{ route('posts.index') }}" class="text-blue-500">Posts</a>
-    </p>
+    <div class="flex flex-col items-center">
+        <h1 class="font-extrabold text-6xl"> Welcome to YJBLOG, {{ auth()->user()->name }}!</h1>
+    </div>
 @endsection

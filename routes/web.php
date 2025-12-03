@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/my-posts', [PostController::class, 'myPosts'])
+->middleware(['auth', 'verified'])->name('posts.myPosts');
+
 Route::get('/posts', [PostController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('posts.index');
 

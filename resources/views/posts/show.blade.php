@@ -17,7 +17,8 @@
                 <p class="text-sm italic">Created by <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
                         class="hover:underline">{{ $post->user->name }}</a> on
                     {{ $post->created_at->format('d/m/Y') }} at
-                    {{ $post->created_at->format('g:i A T') }}<br> Last updated {{ $post->updated_at->diffForHumans() }}</p>
+                    {{ $post->created_at->format('g:i A T') }}<br> Last updated {{ $post->updated_at->diffForHumans() }}
+                </p>
                 <p>{{ $post->body }}</p>
             </div>
 
@@ -44,17 +45,7 @@
                     <p class="font-light italic">Some thoughts from fellow users! If any at all.</p>
                 </div>
 
-                @foreach ($comments as $comment)
-                    <div class="mt-4">
-                        {{ $comment->content }}
-                        <p class="italic text-sm">Posted by <a
-                                href="{{ route('accounts.show', ['id' => $comment->user_id]) }}"
-                                class="hover:underline">{{ $comment->user->name }}</a> on
-                            {{ $comment->created_at->format('d/m/Y') }} at
-                            {{ $comment->created_at->format('g:i A T') }}<br>
-                            Last updated {{ $comment->updated_at->diffForHumans() }}</p>
-                    </div>
-                @endforeach
+                @livewire('commenthandler', ['id' => $post->id])
             </div>
         </div>
     </div>

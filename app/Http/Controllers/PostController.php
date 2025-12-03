@@ -17,8 +17,13 @@ class PostController extends Controller
     {
         // return the latest posts with 15 posts per page.
         return view('posts.index', [
-            'posts'=>Post::latest()->paginate(10),
+            'posts'=>Post::latest()->paginate(9),
         ]);
+    }
+
+    public function myPosts()
+    {
+        return view('posts.index', ['posts'=>Post::where('user_id', auth()->id())->paginate(9)]);
     }
 
     /**
