@@ -14,7 +14,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('accounts.index', ['accounts'=>Profile::latest()->paginate(10)]);
+        return view('accounts.index', ['accounts'=>Profile::latest()->paginate(12)]);
     }
 
     /**

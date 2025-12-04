@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <p class="text-sm italic">By <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
-                            class="hover:underline text-[#EF8354]">{{ $post->user->name }}</a> at
+                            class="hover:underline text-[#EF8354]">&#64{{ $post->user->name }}</a> at
                         {{ $post->created_at->format('g:i A T') }} on
                         {{ $post->created_at->format('d/m/Y') }}<br> Updated {{ $post->updated_at->diffForHumans() }}
                     </p>
@@ -65,6 +65,10 @@
 
                 @livewire('commenthandler', ['id' => $post->id])
             </div>
+        </div>
+
+        <div class="mt-6 mb-2 flex justify-center">
+            {{ $posts->links() }}
         </div>
     </div>
 @endsection
