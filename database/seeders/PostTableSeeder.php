@@ -28,6 +28,6 @@ class PostTableSeeder extends Seeder
         $p->like_count = 0;
         $p->save();
 
-        Post::factory(20)->has(Comment::factory(15))->create();
+        Post::factory(20)->has(Comment::factory(10))->create();
     }
 }

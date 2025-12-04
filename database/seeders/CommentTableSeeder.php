@@ -25,6 +25,6 @@ class CommentTableSeeder extends Seeder
         $c->content = "Play like that every week and we'll go down!";
         $c->save();
 
-        Comment::factory(25)->create();
+        Comment::factory(50)->create();
     }
 }

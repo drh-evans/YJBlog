@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Gate;
 use App\Models\Profile;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Club;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -15,7 +17,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('accounts.index', ['accounts'=>Profile::latest()->paginate(9)]);
+        $profiles = Profile::latest()->paginate(9);
+
+        return view('accounts.index', ['accounts'=>$profiles]);
     }
 
     /**
@@ -39,10 +43,11 @@ class AccountController extends Controller
      */
     public function show(string $id)
     {
-        $profile = Profile::with(['club', 'user'])->findOrFail($id);
+        $profile = Profile::with(['user'])->findOrFail($id);
         $posts = Post::where('user_id', $profile->id)->latest()->paginate(10);
         $comments = Comment::where('user_id', $profile->id)->latest()->paginate(10);
-        return view('accounts.show', ['account'=>$profile, 'posts'=>$posts, 'comments'=>$comments]);
+        $club = Club::findOrFail(id: $profile->favourite_club_id);
+        return view('accounts.show', ['account'=>$profile, 'posts'=>$posts, 'comments'=>$comments, 'club'=>$club]);
     }
 
     /**
@@ -50,9 +55,11 @@ class AccountController extends Controller
      */
     public function edit(string $id)
     {
-        $profile = Profile::findOrFail($id);
+        $profile = Profile::with(['club'])->findOrFail($id);
         Gate::authorize('edit-profile', $profile);
-        return view('accounts.edit', ['profile'=>$profile]);
+
+        $clubs = DB::table('clubs')->orderBy('name')->get();
+        return view('accounts.edit', ['account'=>$profile, 'clubs'=>$clubs]);
     }
 
     /**
@@ -67,12 +74,12 @@ class AccountController extends Controller
         $validatedData = $request->validate([
             'display_name'=>'required|string|max:20',
             'description'=>'required|string|max:300',
-            'favourite_club_id'=>'nullable|integer'
+            'favourite_club_id'=>'required|integer'
         ]);
 
-        $profile->display_name = $validatedData['display_name'] ?? $profile->display_name;
+        $profile->display_name = $validatedData['display_name'];
         $profile->description = $validatedData['description'];
-        $profile->favourite_club_id;
+        $profile->favourite_club_id = $validatedData['favourite_club_id'];
 
         $profile->save();
 

@@ -13,10 +13,6 @@ class Stadium extends Model
         return $this->belongsTo(Club::class);
     }
 
-    public function fixtures(){
-        return $this->hasMany(Fixture::class);
-    }
-
     public function users(){
         return $this->belongsToMany(User::class);
     }

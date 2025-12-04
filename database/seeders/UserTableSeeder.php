@@ -35,6 +35,6 @@ class UserTableSeeder extends Seeder
             'role_id'=>2,
         ]);
         
-        User::factory(10)->has(Profile::factory())->has(Post::factory(15))->create();
+        User::factory(10)->has(Profile::factory())->has(Post::factory(5))->create();
     }
 }

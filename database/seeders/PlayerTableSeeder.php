@@ -25,7 +25,6 @@ class PlayerTableSeeder extends Seeder
         $p->year_joined=2024;
         $p->club_id= 1;
         $p->save();
-        $p->fixtures()->attach([1,2]);
 
         $p = new Player();
         $p->name = "Ben Cabango";
@@ -36,7 +35,6 @@ class PlayerTableSeeder extends Seeder
         $p->year_joined=2014;
         $p->club_id= 1;
         $p->save();
-        $p->fixtures()->attach([1,2]);
 
         Player::factory(15)->create();
 

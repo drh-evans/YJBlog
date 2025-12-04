@@ -28,7 +28,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('accounts.index')" :active="request()->routeIs('accounts')">
-                        {{ __('Users') }}
+                        {{ __('Fans') }}
                     </x-nav-link>
                 </div>
             </div>

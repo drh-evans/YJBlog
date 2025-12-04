@@ -1,12 +1,12 @@
 @extends('layouts.yjblayout')
 
-@section('title', 'Users')
+@section('title', 'Fans')
 
 @section('content')
 
-    <div class="ml-4">
-        <p class="font-semibold text-lg"> We make you an account by default, but you might want to customise it!</p>
-        <a class="p-1 border-[#4F5D75]/90 mt-5 bg-[#4F5D75] text-[#BFC0C0] rounded-lg backdrop-blur-sm text-md hover:bg-[#888c92] font-bold text-sm"
+    <div class="ml-4 flex flex-col items-center">
+        <p class="text-lg"> We make you an account by default, but you might want to customise it!</p>
+        <a class="p-1 border-[#4F5D75]/90 mt-2 bg-[#4F5D75] text-[#BFC0C0] rounded-lg backdrop-blur-sm text-md hover:bg-[#888c92] font-bold text-sm"
             href="{{ route('account.edit', auth()->id()) }}">Customise
             Account</a>
     </div>

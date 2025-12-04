@@ -23,11 +23,12 @@ class CommentHandler extends Component
             'content'=>'required|string|max:500',
         ]);
 
-        $comment = new Comment;
-        $comment->post_id = $this->postId;
-        $comment->user_id = auth()->id();
-        $comment->content = $validatedData['content'];
-        $comment->save();
+
+        Comment::create([
+            'post_id' => $this->postId,
+            'user_id' => auth()->id(),
+            'content' => $validatedData['content'],
+        ]);
 
         $this->reset('content');
 
@@ -42,6 +43,10 @@ class CommentHandler extends Component
     }
     public function render()
     {
-        return view('livewire.commenthandler', ['comments'=>Comment::where('post_id', $this->postId)->latest()->paginate(5)]);
+        $comments = Comment::with(['user', 'likes'])
+                    ->where('post_id', $this->postId)
+                    ->latest()
+                    ->paginate(5);
+        return view('livewire.commenthandler', ['comments'=>$comments]);
     }
 }

@@ -8,7 +8,6 @@
             class="ml-2 px-2 py-2 border-[#EF8354]/90 bg-[#EF8354] text-slate-800 rounded-lg text-md font-semibold hover:underline hover:bg-[#d58867]">Return</a>
         <div class="flex flex-col items-center">
             <div class="mt-4 w-[700px] border border-black rounded-md bg-[#BFC0C0]/20 shadow-md p-3">
-
                 <div>
                     <div class="flex flex-row items-center justify-between">
                         <h1 class="font-bold text-2xl">{{ $post->title }}</h1>

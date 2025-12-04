@@ -97,7 +97,7 @@ class PostController extends Controller
             'image'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $post->title = $validatedData['title'] ?? $post->title;
+        $post->title = $validatedData['title'];
         $post->body = $validatedData['body'];
 
         // check if an image has been uploaded, delete any image and 
