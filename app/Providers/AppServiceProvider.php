@@ -8,6 +8,8 @@ use App\Models\Role;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use Illuminate\Database\Eloquent\Model;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('edit-comment', fn(User $user, Comment $post) => $post->user_id==$user->id || $user->role_id == Role::IS_SUPERADMIN);
         Gate::define('delete-comment', fn(User $user, Comment $post) => $post->user_id==$user->id || $user->role_id == Role::IS_SUPERADMIN
-        || $user->role_id == Role::IS_ADMIN);
+        || $user->role_id == Role::IS_ADMIN);        
 
+        Gate::define('like-model', fn(User $user, Model $likeableModel) => $likeableModel->user_id != $user->id);
     }
 }

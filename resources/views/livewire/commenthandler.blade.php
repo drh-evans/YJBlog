@@ -16,11 +16,16 @@
                 <p class="italic text-sm mt-2"><a href="{{ route('accounts.show', ['id' => $comment->user_id]) }}"
                         class="hover:underline text-[#EF8354]">&#64{{ $comment->user->name }}</a>
                     Commented {{ $comment->updated_at->diffForHumans() }} ({{ $comment->created_at->format('d/m/Y') }})
+                    @livewire('like-counter', ['likeableType' => 'comment', 'likeableId' => $comment->id])
                 </p>
 
                 @can('delete-comment', $comment)
                     <button wire:click="delete({{ $comment->id }})"
                         class="mt-2 rounded-lg bg-red-500 hover:bg-red-400 p-1 font-semibold">Delete</button>
+                @endcan
+
+                @can('like-model', $comment)
+                    @livewire('like-button', ['likeableType' => 'comment', 'likeableId' => $comment->id])
                 @endcan
             </div>
         @endforeach

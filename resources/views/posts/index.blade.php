@@ -19,8 +19,9 @@
                                 {{ $post->title }}</a></h2>
                         <div class="mt-2">
                             <p class="text-sm italic">By <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
-                                    class="hover:underline">&#64{{ $post->user->name }}</a> <br>
-                                {{ $post->updated_at->diffForHumans() }}</p>
+                                    class="hover:underline text-[#EF8354]">&#64{{ $post->user->name }}</a> <br>
+                                {{ $post->updated_at->diffForHumans() }} <br>
+                                @livewire('like-counter', ['likeableType' => 'post', 'likeableId' => $post->id])</p>
                         </div>
                         <!-- Added a button to view as well as clicking on the title to aid accessibility-->
                         <a class="mt-4 p-2 border-[#4F5D75]/90 bg-[#4F5D75] text-[#BFC0C0] rounded-lg backdrop-blur-sm text-md hover:bg-[#888c92] font-bold text-sm"

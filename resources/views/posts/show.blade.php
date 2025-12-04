@@ -10,7 +10,13 @@
             <div class="mt-4 w-[700px] border border-black rounded-md bg-[#BFC0C0]/20 shadow-md p-3">
 
                 <div>
-                    <h1 class="font-bold text-2xl">{{ $post->title }}</h1>
+                    <div class="flex flex-row items-center justify-between">
+                        <h1 class="font-bold text-2xl">{{ $post->title }}</h1>
+
+                        <div class="mr-4">
+                            @livewire('like-counter', ['likeableType' => 'post', 'likeableId' => $post->id])
+                        </div>
+                    </div>
                     <p class="text-sm italic">By <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
                             class="hover:underline text-[#EF8354]">{{ $post->user->name }}</a> at
                         {{ $post->created_at->format('g:i A T') }} on
@@ -27,22 +33,29 @@
                 </div>
             </div>
 
-            <div class="mt-2 flex justify-center gap-4">
+            <div class="flex flex-row items-center">
+                <div class="mt-2 flex justify-center gap-4">
 
-                @can('edit-post', $post)
-                    <a href="{{ route('post.edit', $post->id) }}"
-                        class="rounded-lg bg-gray-500 hover:bg-gray-400 px-3 py-1 font-semibold">
-                        Edit Post</a>
-                @endcan
+                    @can('edit-post', $post)
+                        <a href="{{ route('post.edit', $post->id) }}"
+                            class="rounded-lg bg-gray-500 hover:bg-gray-400 px-3 py-1 font-semibold">
+                            Edit Post</a>
+                    @endcan
 
-                @can('delete-post', $post)
-                    <form action="{{ route('post.destroy', $post->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="rounded-lg bg-red-500 hover:bg-red-400 px-3 py-1 font-semibold">Delete
-                            Post</button>
-                    </form>
-                @endcan
+                    @can('delete-post', $post)
+                        <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="rounded-lg bg-red-500 hover:bg-red-400 px-3 py-1 font-semibold">Delete
+                                Post</button>
+                        </form>
+                    @endcan
+                </div>
+                <div class="ml-2">
+                    @can('like-model', $post)
+                        @livewire('like-button', ['likeableType' => 'post', 'likeableId' => $post->id])
+                    @endcan
+                </div>
             </div>
 
             <div class="text-center">
