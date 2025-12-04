@@ -43,9 +43,15 @@ Route::get('/posts/{id}/edit', [PostController::class, 'edit'])
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])
 ->middleware(['auth', 'verified'])->name('post.destroy');
 
-Route::get('/users', [AccountController::class, 'index'])
+Route::get('/fans', [AccountController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('accounts.index');
 
-Route::get('/users/{id}', [AccountController::class, 'show'])
+Route::get('/fans/{id}', [AccountController::class, 'show'])
 ->middleware(['auth', 'verified'])->name('accounts.show');
+
+Route::patch('/fans/{id}', [AccountController::class, 'update'])
+->middleware(['auth', 'verified'])->name('account.update');
+
+Route::get('/fans/{id}/edit', [AccountController::class, 'edit'])
+->middleware(['auth', 'verified'])->name('account.edit');
 require __DIR__.'/auth.php';

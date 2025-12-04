@@ -21,6 +21,7 @@ class StadiumFactory extends Factory
             "year_built"=> $this->faker->year(2025),
             "city"=> $this->faker->city(),
             "country"=> $this->faker->randomElement(['England', 'Wales']),
+            "club_id"=> $this->faker->unique()->numberBetween(2,21),
         ];
     }
 }

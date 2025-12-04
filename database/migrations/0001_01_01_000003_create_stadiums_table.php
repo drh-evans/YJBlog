@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clubs', function (Blueprint $table) {
+        Schema::create('stadiums', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('name');
-            $table->string('division');
-            $table->bigInteger('stadium_id')->unsigned()->nullable();
-            $table->integer('year_founded');
+            $table->bigInteger('capacity')->unsigned();
+            $table->year('year_built');
+            $table->string('city');
+            $table->string('country');
+            $table->bigInteger('club_id')->unsigned()->nullable();
 
-            $table->foreign('stadium_id')->references('id')->on('stadiums')
+            $table->foreign('club_id')->references('id')->on('clubs')
             ->onDelete('set null')->onUpdate('set null');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clubs');
+        Schema::dropIfExists('stadiums');
     }
 };

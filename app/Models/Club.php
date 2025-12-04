@@ -10,7 +10,7 @@ class Club extends Model
     use HasFactory;
 
     public function stadium(){
-        return $this->belongsTo(Stadium::class);
+        return $this->hasOne(Stadium::class);
     }
 
     public function profiles(){

@@ -17,8 +17,7 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            "user_id"=>$this->faker->unique()->numberBetween(2, 11),
-            "display_name"=>$this->faker->name(),
+            "display_name"=>$this->faker->firstName() . " " . $this->faker->lastName(),
             "description"=>$this->faker->text($maxNbChars = 100),
             "favourite_club_id"=>$this->faker->numberBetween(1,21),
         ];

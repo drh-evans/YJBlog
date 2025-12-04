@@ -10,7 +10,7 @@ class Stadium extends Model
     use HasFactory;
 
     public function club(){
-        return $this->hasOne(Club::class);
+        return $this->belongsTo(Club::class);
     }
 
     public function fixtures(){

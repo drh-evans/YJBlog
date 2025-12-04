@@ -20,7 +20,6 @@ class ClubFactory extends Factory
             "name"=> $this->faker->city() . " " . $this->faker->randomElement(["FC", "AFC", "Athletic", "Rovers"]),
             "year_founded"=> $this->faker->year($max='now'),
             "division"=> $this->faker->randomElement(['Premier League', 'Championship','League One']),
-            "stadium_id"=> $this->faker->unique()->numberBetween(2,21),
         ];
     }
 }

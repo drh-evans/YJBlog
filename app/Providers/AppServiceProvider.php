@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Model;
 
 
@@ -35,5 +36,8 @@ class AppServiceProvider extends ServiceProvider
         || $user->role_id == Role::IS_ADMIN);        
 
         Gate::define('like-model', fn(User $user, Model $likeableModel) => $likeableModel->user_id != $user->id);
+
+        Gate::define('edit-profile', fn(User $user, Profile $profile) => $profile->user_id == $user->id);
+
     }
 }

@@ -19,7 +19,6 @@ class ClubTableSeeder extends Seeder
         $c->name="Swansea City";
         $c->division="EFL Championship";
         $c->year_founded=1912;
-        $c->stadium_id=1;
         $c->save();
 
         Club::factory(20)->has(Player::factory(25))->create();

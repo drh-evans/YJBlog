@@ -19,6 +19,7 @@ class StadiumTableSeeder extends Seeder
         $s->year_built=2005;
         $s->city="Swansea";
         $s->country="Wales";
+        $s->club_id="1";
         $s->save();
         $s->users()->attach([1,2]);
 
@@ -28,6 +29,7 @@ class StadiumTableSeeder extends Seeder
         $s->year_built= 1905;
         $s->city="Luton";
         $s->country="England";
+        $s->club_id="2";
         $s->save();
         $s->users()->attach([1,2]);
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('display_name');
             $table->string('description');
-            $table->bigInteger('favourite_club_id')->unsigned();
+            $table->bigInteger('favourite_club_id')->unsigned()->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

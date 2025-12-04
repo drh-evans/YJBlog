@@ -13,15 +13,14 @@ class ProfileTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $p = new Profile();
-        $p->user_id = 1;
-        $p->display_name ="Rhys";
-        $p->description ="Big football fan";
-        $p->favourite_club_id=1;
-        $p->save();
-
+        //$p = new Profile();
+        //$p->user_id = 1;
+        //$p->display_name ="Rhys";
+        //$p->description ="Big football fan";
+        //$p->favourite_club_id=1;
+        //$p->save();
         
-        Profile::factory(10)->create();
+        // Profile::factory(10)->create();
         
     }
 }

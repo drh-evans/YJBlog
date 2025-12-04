@@ -66,9 +66,5 @@
                 @livewire('commenthandler', ['id' => $post->id])
             </div>
         </div>
-
-        <div class="mt-6 mb-2 flex justify-center">
-            {{ $posts->links() }}
-        </div>
     </div>
 @endsection
