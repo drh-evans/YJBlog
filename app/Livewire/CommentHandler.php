@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Notifications\CommentMadeNotification;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Comment;
 
@@ -24,13 +25,15 @@ class CommentHandler extends Component
         ]);
 
 
-        Comment::create([
+        $comment = Comment::create([
             'post_id' => $this->postId,
             'user_id' => auth()->id(),
             'content' => $validatedData['content'],
         ]);
 
-        $this->reset('content');
+        $originalPoster = $comment->post->user;
+        $originalPost = $comment->post;
+        $originalPoster->notify(new CommentMadeNotification($originalPost, $comment));
 
         session()->flash('message', 'Comment added!');
     }

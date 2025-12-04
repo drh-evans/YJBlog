@@ -23,7 +23,6 @@
         </div>
 
         <div>
-
             <h1>{{ $account->display_name }}'s Posts</h1>
             @foreach ($posts as $post)
                 <a href="{{ route('post.show', $post->id) }}">{{ $post->title }} <br></a>

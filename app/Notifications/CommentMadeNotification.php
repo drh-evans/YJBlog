@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentMade extends Notification
+class CommentMadeNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public $post, public $comment)
     {
         //
     }
@@ -35,9 +35,12 @@ class CommentMade extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('New comment received on your post!')
+            ->line($notifiable->name .' your post "'.$this->post->title.'" is getting noticed,')
+            ->line($this->comment->user->name.' commented on your post:')
+            ->line($this->comment->content)
+            ->action('See your post here!', url('/posts/'.$this->post->id))
+            ->line('Have a good day!');
     }
 
     /**
