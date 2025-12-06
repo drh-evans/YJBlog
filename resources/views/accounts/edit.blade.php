@@ -3,7 +3,6 @@
 @section('title', 'Edit Profile')
 
 @section('content')
-    <p>yay edits work</p>
 
     <div class="mt-4 flex flex-col items-center">
 
@@ -24,7 +23,7 @@
             </select>
 
             <div class="mt-2 flex justify-center gap-4">
-                <button type="submit" class="rounded-lg bg-green-500 hover:bg-green-400 px-4 py-2"> Save Post</button>
+                <button type="submit" class="rounded-lg bg-green-500 hover:bg-green-400 px-4 py-2"> Save </button>
                 <a href="{{ route('accounts.index') }}" class="rounded-lg bg-gray-500 hover:bg-gray-400 px-4 py-2"> Cancel
                 </a>
             </div>

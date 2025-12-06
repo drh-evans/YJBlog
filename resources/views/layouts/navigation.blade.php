@@ -24,11 +24,15 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('accounts.index')" :active="request()->routeIs('accounts')">
-                        {{ __('Stadiums') }}
+                        {{ __('Fans') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('accounts.index')" :active="request()->routeIs('accounts')">
-                        {{ __('Fans') }}
+                        {{ __('Stadiums') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('standings.index')" :active="request()->routeIs('standings')">
+                        {{ __('Standings') }}
                     </x-nav-link>
                 </div>
             </div>

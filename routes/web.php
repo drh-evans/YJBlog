@@ -57,6 +57,6 @@ Route::get('/fans/{id}/edit', [AccountController::class, 'edit'])
 ->middleware(['auth', 'verified'])->name('account.edit');
 
 Route::get('/standings', [StandingsController::class, 'index'])
-->middleware(['auth', 'verified'])->name('account.edit');
+->middleware(['auth', 'verified'])->name('standings.index');
 
 require __DIR__.'/auth.php';

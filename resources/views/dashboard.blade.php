@@ -13,7 +13,7 @@
                 class="px-5 py-1.5 border-white/20 hover:border-white/20 bg-white/30 text-slate-800 rounded-lg backdrop-blur-sm text-normal leading-normal">
                 Forum</a>
 
-            <a href="{{ route('posts.index') }}"
+            <a href="{{ route('account.edit', auth()->id()) }}"
                 class="px-5 py-1.5 border-white/20 hover:border-white/20 bg-white/30 text-slate-800 rounded-lg backdrop-blur-sm text-normal leading-normal">
                 Profile</a>
         </div>
