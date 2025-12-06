@@ -36,11 +36,11 @@ class CommentMadeNotification extends Notification
     {
         return (new MailMessage)
             ->subject('New comment received on your post!')
-            ->line($notifiable->name .' your post "'.$this->post->title.'" is getting noticed,')
+            ->line($notifiable->name .' your post **"'.$this->post->title.'"** is getting noticed,')
             ->line($this->comment->user->name.' commented on your post:')
-            ->line($this->comment->content)
+            ->line('"'.$this->comment->content.'"')
             ->action('See your post here!', url('/posts/'.$this->post->id))
-            ->line('Have a good day!');
+            ->line('Happy blogging!');
     }
 
     /**

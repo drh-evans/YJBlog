@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StandingsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -54,4 +55,8 @@ Route::patch('/fans/{id}', [AccountController::class, 'update'])
 
 Route::get('/fans/{id}/edit', [AccountController::class, 'edit'])
 ->middleware(['auth', 'verified'])->name('account.edit');
+
+Route::get('/standings', [StandingsController::class, 'index'])
+->middleware(['auth', 'verified'])->name('account.edit');
+
 require __DIR__.'/auth.php';
