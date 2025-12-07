@@ -21,5 +21,9 @@
                 @livewire('check-in-button', ['stadiumId' => $stadium->id])
             @endif
         </div>
+
+        <div>
+            @livewire('checked-in-users', ['stadiumId' => $stadium->id])
+        </div>
     </div>
 @endsection
