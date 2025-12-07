@@ -19,7 +19,8 @@
                             <td class="p-4 border border-slate-500">{{ $stadium->name }}</td>
                             <td class="p-4 border border-gray-500">{{ $stadium->city }}, {{ $stadium->country }}</td>
                             <td class="p-4 border border-gray-500"><a
-                                    href="{{ route('stadium.show', ['id' => $stadium->id]) }}">View</a></td>
+                                    href="{{ route('stadium.show', ['id' => $stadium->id]) }}"
+                                    class="hover:underline hover:text-[#EF8354]">View</a></td>
                         </tr>
                     @endforeach
                 </tbody>
