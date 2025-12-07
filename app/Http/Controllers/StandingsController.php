@@ -21,7 +21,7 @@ class StandingsController extends Controller
     ];
 
     // API only allows these seasons on a free plan, cannot use current or previous season.
-    private const SEASONS = [2021, 2022, 2023];
+    private const SEASONS = [2023, 2022, 2021];
 
     // an index view such that users can make selections.
     public function index () {

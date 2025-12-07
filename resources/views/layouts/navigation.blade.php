@@ -27,7 +27,7 @@
                         {{ __('Fans') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('accounts.index')" :active="request()->routeIs('accounts')">
+                    <x-nav-link :href="route('stadiums.index')" :active="request()->routeIs('stadiums')">
                         {{ __('Stadiums') }}
                     </x-nav-link>
 

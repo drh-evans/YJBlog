@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Stadium;
 
 class StadiumController extends Controller
 {
@@ -11,15 +12,10 @@ class StadiumController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        // return all stadiums in descending order, 10 per page.
+        return view('stadiums.index', [
+            'stadiums'=>Stadium::orderBy('name', 'desc')->paginate(10),
+        ]);
     }
 
     /**
@@ -27,7 +23,17 @@ class StadiumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'id'=>'required|integer',
+        ]);
+
+        $currentUser = auth()->user();
+
+        // check in the user
+
+        $currentUser->stadiums()->attach($validatedData['id']);
+
+        return view('stadiums.index')->with('success', 'Checked in!');
     }
 
     /**
@@ -35,7 +41,16 @@ class StadiumController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // the current stadium
+        $stadium = Stadium::findOrFail($id);
+        
+        // check if the current user has visited said stadium.
+        $hasVisited = auth()->user()->stadiums->contains($id);
+
+        // the total amount of visits to that stadium by users.
+        $totalVisits = $stadium->users()->count();
+
+        return view('stadiums.show', ['stadium'=>$stadium,'visited'=>$hasVisited, 'totalVisits'=>$totalVisits]);
     }
 
     /**
@@ -50,14 +65,6 @@ class StadiumController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }

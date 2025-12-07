@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StadiumController;
 use App\Http\Controllers\StandingsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -58,5 +59,14 @@ Route::get('/fans/{id}/edit', [AccountController::class, 'edit'])
 
 Route::get('/standings', [StandingsController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('standings.index');
+
+Route::get('/stadiums', [StadiumController::class, 'index'])
+->middleware(['auth', 'verified'])->name('stadiums.index');
+
+Route::post('/stadiums', [StadiumController::class, 'store'])
+->middleware(['auth', 'verified'])->name('stadiums.store');
+
+Route::get('/stadiums/{id}', [StadiumController::class, 'show'])
+->middleware(['auth', 'verified'])->name('stadium.show');
 
 require __DIR__.'/auth.php';
