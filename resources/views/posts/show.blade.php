@@ -16,7 +16,7 @@
                             @livewire('like-counter', ['likeableType' => 'post', 'likeableId' => $post->id])
                         </div>
                     </div>
-                    <p class="text-sm italic">By <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
+                    <p class="text-sm italic">By <a href="{{ route('account.show', ['id' => $post->user_id]) }}"
                             class="hover:underline text-[#EF8354]">&#64{{ $post->user->name }}</a> at
                         {{ $post->created_at->format('g:i A T') }} on
                         {{ $post->created_at->format('d/m/Y') }}<br> Updated {{ $post->updated_at->diffForHumans() }}

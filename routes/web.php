@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StadiumController;
 use App\Http\Controllers\StandingsController;
@@ -49,7 +50,7 @@ Route::get('/fans', [AccountController::class, 'index'])
 ->middleware(['auth', 'verified'])->name('accounts.index');
 
 Route::get('/fans/{id}', [AccountController::class, 'show'])
-->middleware(['auth', 'verified'])->name('accounts.show');
+->middleware(['auth', 'verified'])->name('account.show');
 
 Route::patch('/fans/{id}', [AccountController::class, 'update'])
 ->middleware(['auth', 'verified'])->name('account.update');
@@ -68,5 +69,8 @@ Route::post('/stadiums', [StadiumController::class, 'store'])
 
 Route::get('/stadiums/{id}', [StadiumController::class, 'show'])
 ->middleware(['auth', 'verified'])->name('stadium.show');
+
+Route::get('/comment/{id}', [CommentController::class, 'show'])
+->middleware(['auth', 'verified'])->name('comment.show');
 
 require __DIR__.'/auth.php';

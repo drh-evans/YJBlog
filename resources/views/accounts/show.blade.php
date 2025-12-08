@@ -15,23 +15,70 @@
                 <div class="mt-2">
                     <p class="italic">
                         {{ $account->description }} <br>
-                        Total comments made: {{ $comments->count() }} <br>
-                        Total posts made: {{ $posts->count() }}
+                        Total comments made: {{ $totalComments }} <br>
+                        Total posts made: {{ $totalPosts }}
                     </p>
                 </div>
             </div>
         </div>
 
-        <div>
-            <h1>{{ $account->display_name }}'s Posts</h1>
-            @foreach ($posts as $post)
-                <a href="{{ route('post.show', $post->id) }}">{{ $post->title }} <br></a>
-            @endforeach
+        <div class="mt-4 mb-4 flex flex-col items-center">
+            <table
+                class="border-separate border-spacing-3 border border-black rounded-md bg-[#BFC0C0]/20 shadow-md p-3 text-center">
+                <thead>
+                    <tr>
+                        <th>Posts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($posts as $post)
+                        <tr>
+                            <td> <a href="{{ route('post.show', $post->id) }}"
+                                    class="text-md hover:underline hover:text-[#EF8354]">{{ $post->title }}</a>
+                            </td>
 
-            <h1>{{ $account->display_name }}'s Comments</h1>
-            @foreach ($comments as $comment)
-                <a href="{{ route('post.show', $comment->post_id) }}">{{ $comment->content }} <br></a>
-            @endforeach
+                            @can('delete-post', $post)
+                                <td>
+                                    <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="rounded-lg bg-red-500 hover:bg-red-400 p-2  text-sm font-semibold">Delete</button>
+                                    </form>
+                                </td>
+                            @endcan
+
+                            @can('edit-post', $post)
+                                <td>
+                                    <a href="{{ route('post.edit', $post->id) }}"
+                                        class="rounded-lg bg-gray-500 hover:bg-gray-400 p-2 text-sm font-semibold">
+                                        Edit</a>
+                                </td>
+                            @endcan
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <table
+                class="mt-4 mb-4 border-separate border-spacing-3 border border-black rounded-md bg-[#BFC0C0]/20 shadow-md p-3 text-center">
+                <thead>
+                    <tr>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($comments as $comment)
+                        <tr>
+                            <td> <a href="{{ route('comment.show', $comment->id) }}"
+                                    class="text-md hover:underline hover:text-[#EF8354]">{{ $comment->content }}</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            {{ $comments->links() }}
         </div>
     </div>
 @endsection

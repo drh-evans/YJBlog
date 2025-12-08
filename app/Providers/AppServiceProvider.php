@@ -48,5 +48,10 @@ class AppServiceProvider extends ServiceProvider
         // Gates for profile edit permissions.
         Gate::define('edit-profile', fn(User $user, Profile $profile) => $profile->user_id == $user->id);
 
+        // Gates for admin permissions
+
+        Gate::define('access-admin', fn(User $user) => $user->role_id == Role::IS_ADMIN ||
+        $user->role_id == Role::IS_SUPERADMIN);
+        Gate::define('edit-admins', fn(User $user) => $user->role_id == Role::IS_SUPERADMIN);
     }
 }

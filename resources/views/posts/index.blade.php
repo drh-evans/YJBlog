@@ -18,7 +18,7 @@
                                 href="{{ route('post.show', ['id' => $post->id]) }}">
                                 {{ $post->title }}</a></h2>
                         <div class="mt-2">
-                            <p class="text-sm italic">By <a href="{{ route('accounts.show', ['id' => $post->user_id]) }}"
+                            <p class="text-sm italic">By <a href="{{ route('account.show', ['id' => $post->user_id]) }}"
                                     class="hover:underline text-[#EF8354]">&#64{{ $post->user->name }}</a> <br>
                                 {{ $post->updated_at->diffForHumans() }} <br>
                                 @livewire('like-counter', ['likeableType' => 'post', 'likeableId' => $post->id])</p>

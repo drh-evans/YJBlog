@@ -13,7 +13,7 @@
             <div wire:key="comment-{{ $comment->id }}"
                 class="mt-4 w-[700px] border border-black rounded-md bg-[#BFC0C0]/20 shadow-md p-3">
                 <p class="text-md">{{ $comment->content }}</p>
-                <p class="italic text-sm mt-2"><a href="{{ route('accounts.show', ['id' => $comment->user_id]) }}"
+                <p class="italic text-sm mt-2"><a href="{{ route('account.show', ['id' => $comment->user_id]) }}"
                         class="hover:underline text-[#EF8354]">&#64{{ $comment->user->name }}</a>
                     Commented {{ $comment->updated_at->diffForHumans() }} ({{ $comment->created_at->format('d/m/Y') }})
 

@@ -11,15 +11,13 @@ You MUST then run `sail npm run dev` in a seperate terminal to render the tailwi
 
 Once these have been run you may access the website via localhost on a brower, you must create an account to access all website features. In the event you accessed localhost prior to running `sail npm run dev` please re-open/refresh the web-page.
 
-There is a unique bug that is rare where the compiler throws faker() maximum retries, when `sail artisan migrate:fresh --seed` is ran more times this error ceases to exist.
-
-Livewire v4 must be installed for this web application to work, Mailpit is used for the mail system.
+Livewire v3 must be installed for this web application to work, Mailpit is used for the mail system.
 
 ## Further Information
 
 This application has been tested using the methods and packages described above. The most recent version has been tested and works using these methods.
 
-GitHub Repo: https://github.com/rhys3v4n5/yjblogcw
+GitHub Repository: https://github.com/rhys3v4n5/yjblogcw
 
 Things I'd like to add in the future:
 Live Broadcasting of events i.e. comments.

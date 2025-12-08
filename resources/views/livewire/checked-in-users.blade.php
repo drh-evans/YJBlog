@@ -3,7 +3,7 @@
     <ul>
         @foreach ($checkedInUsers as $user)
             <li>
-                <a href="{{ route('accounts.show', ['id' => $user->id]) }}"
+                <a href="{{ route('account.show', ['id' => $user->id]) }}"
                     class="text-[#EF8354] italic text-med hover:underline">&#64{{ $user->name }}</a>
             </li>
         @endforeach
