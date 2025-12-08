@@ -89,7 +89,7 @@ class AccountController extends Controller
 
         $profile->save();
 
-        return redirect()->route('accounts.show', ['id' => $id])->with('success', 'Profile updated');
+        return redirect()->route('account.show', ['id' => $id])->with('success', 'Profile updated');
     }
 
     /**

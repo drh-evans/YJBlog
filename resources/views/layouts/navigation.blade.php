@@ -34,6 +34,12 @@
                     <x-nav-link :href="route('standings.index')" :active="request()->routeIs('standings')">
                         {{ __('Standings') }}
                     </x-nav-link>
+
+                    @can('access-admin')
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admins')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

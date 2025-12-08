@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
         // Gates for post permissions.
-        Gate::define('edit-post', fn(User $user, Post $post) => $post->user_id==$user->id || $user->role_id == Role::IS_SUPERADMIN);
+        Gate::define('edit-post', fn(User $user, Post $post) => $post->user_id==$user->id);
         Gate::define('delete-post', fn(User $user, Post $post) => $post->user_id==$user->id || $user->role_id == Role::IS_SUPERADMIN
         || $user->role_id == Role::IS_ADMIN);
 
