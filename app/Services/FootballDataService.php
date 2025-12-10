@@ -5,7 +5,6 @@ namespace App\Services;
 use Illuminate\Support\Facades\Http;
 
 // This is a service to retrieve football data for the application from a 3rd party.
-// Championship = 40, 
 class FootballDataService {
 
     private string $apiKey;
