@@ -22,21 +22,6 @@ class AccountController extends Controller
         return view('accounts.index', ['accounts'=>$profiles]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -90,13 +75,5 @@ class AccountController extends Controller
         $profile->save();
 
         return redirect()->route('account.show', ['id' => $id])->with('success', 'Profile updated');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -100,7 +100,7 @@ class PostController extends Controller
         $post->title = $validatedData['title'];
         $post->body = $validatedData['body'];
 
-        // check if an image has been uploaded, delete any image and 
+        // check if an image has been uploaded, delete any image and upload a new one
         if ($request->hasFile('image')) {
             if ($post->post_url) {
                 Storage::delete('public/' . $post->post_url);

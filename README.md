@@ -17,8 +17,6 @@ Livewire v3 must be installed for this web application to work, Mailpit is used 
 
 This application has been tested using the methods and packages described above. The most recent version has been tested and works using these methods.
 
-GitHub Repository: https://github.com/rhys3v4n5/yjblogcw
-
 Things I'd like to add in the future:
 Live Broadcasting of events i.e. comments.
 Live match results.
