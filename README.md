@@ -1,6 +1,6 @@
 # YJBlog - A football blog for football passionates.
 
-Web Application created and submitted as coursework for CS-348 at Swansea University. Created by Rhys Evans (2316644@swansea.ac.uk).
+Web Application created and submitted as coursework at Swansea University. Created by Rhys Evans (2316644@swansea.ac.uk).
 YJBlog is a football themed blog allowing users to sign-up and discuss their favourite football topics.
 
 ## HOW TO RUN!
@@ -24,3 +24,8 @@ Friends/for you page.
 
 Side notes:
 The characters &#64 represent @ in html, as it clashes with livewire otherwise.
+
+## Disclaimer
+
+This was submitted as coursework, if you study the same module (or similar) and use this I am not liable for the punishments which may come your way as a result of you being found guilty of academic misconduct.
+
